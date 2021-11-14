@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./:/home/model
+      - ./:/home/OpenADR-model
 #    tty : true
     environment:
       IS_SERVER: "False"
@@ -15,4 +15,4 @@ services:
       DB_NICKNAME: local
 
     # 아래 줄 추가시 해당 python 파일을 실행
-    entrypoint: ["sh", "/home/model/entrypoint.sh"]
+    entrypoint: ["sh", "/home/OpenADR-model/entrypoint.sh"]

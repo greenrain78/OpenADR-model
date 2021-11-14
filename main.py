@@ -1,1 +1,1 @@
-print("openadr model 2")
+print("openadr model")
