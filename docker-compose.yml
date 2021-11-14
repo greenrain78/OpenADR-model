@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  model:
+    container_name: ppc_collect
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/home/model
+#    tty : true
+    environment:
+      IS_SERVER: "False"
+      TZ: Asia/Seoul
+      DB_NICKNAME: local
+
+    # 아래 줄 추가시 해당 python 파일을 실행
+    entrypoint: ["python", "/home/model/simple_test.py"]

@@ -1,0 +1,8 @@
+.idea
+.devcontainer
+.env
+
+# DB 폴더 제외
+data
+
+!.keep
