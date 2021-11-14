@@ -15,4 +15,4 @@ services:
       DB_NICKNAME: local
 
     # 아래 줄 추가시 해당 python 파일을 실행
-    entrypoint: ["python", "/home/model/simple_test.py"]
+    entrypoint: ["sh", "/home/model/entrypoint.sh"]
