@@ -1,14 +1,16 @@
-from Controller.logger_config import main_loggers_config
-from src.Logger.setting_logger import log_settings
 from logging import getLogger
+
+from src.DB.DB_Adapter import DBAdapter
 
 logger = getLogger(__name__)
 
-if __name__ == '__main__':
+raise Exception
 
-    print("openadr model")
-    log_settings.logger_settings(logger_config=main_loggers_config)
-    print("running")
-    logger.debug("running")
-    logger.info("running")
-    logger.error("running")
+# print("main")
+# print(__name__)
+# logger.info("main")
+# if __name__ == 'main':
+#     print("main!!!!")
+#
+#     test = DBAdapter("testars")
+#     test.print_info()

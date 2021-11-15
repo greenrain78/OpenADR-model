@@ -8,4 +8,4 @@ python -m pip install -r requirements.txt
 echo "실행 환경 변수 : $@"
 
 # run main
-python -u main.py $1
+python -u entrypoint.py $1

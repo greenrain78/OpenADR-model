@@ -1,0 +1,44 @@
+import traceback
+from time import sleep
+
+import coloredlogs
+from logging import getLogger
+
+from Controller.logger_config import main_loggers_config
+from settings import DATABASES, return_settings, IS_MAIN_RUNNING, MAIN_INTERVAL
+from src.DB.BaseDB_Adapter import BaseDBAdapter
+from src.Logger.setting_logger import log_settings
+
+logger = getLogger(__name__)
+
+project_name = f"openadr model"
+
+if __name__ == '__main__':
+    print(f"{project_name}: logger settings")
+
+    log_settings.logger_settings(logger_config=main_loggers_config)
+
+    logger.info(f"{project_name}: db adapter setting")
+    BaseDBAdapter.init_settings(database=DATABASES)
+
+
+    logger.info(f"{project_name}: print settings")
+    for key, val in return_settings().items():
+        print(f"{key}, {val}")
+    logger.info(f"{project_name}: run main")
+
+
+    try:
+        # main run
+        import main
+    except Exception as e:
+
+        logger.error(f"{project_name}: main running error\n"
+                     f"{traceback.format_exc()}")
+
+    # main 동작 유지
+    while IS_MAIN_RUNNING:
+        logger.debug(f"{project_name}: running main process")
+        sleep(MAIN_INTERVAL)
+
+    logger.info(f"{project_name}: end main")
