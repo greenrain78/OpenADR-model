@@ -2,6 +2,8 @@
 .devcontainer
 .env
 
+__pycache__
+
 # DB 폴더 제외
 data
 
