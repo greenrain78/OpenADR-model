@@ -1,20 +1,18 @@
 DEV_SETTINGS = {
-    # 테스트 실행
-    "IS_RUN_TEST": False,
-    # 테스트 코드 전체 실행, false시 일부 지정된 테스트 코드만 실행
-    "IS_TEST_ALL": True,
+    # DB 연결 설정
+    "DB_NickName": 'local',     # 연결할 DB
+    "IS_SQL_ECHO": True,        # SQL문 출력
 
-    # main 함수 계속 동작 여부
+    # 테스트 설정 변수 반영
+    "IS_RUN_TEST": False,       # 테스트 실행
+    "IS_TEST_ALL": True,        # 테스트 코드 전체 실행, false시 일부 지정된 테스트 코드만 실행
 
-    "IS_MAIN_RUNNING": True,
+    # main 동작 설정
+    "IS_MAIN_RUNNING": False,   # main 함수 계속 동작 여부
     "MAIN_INTERVAL": 10,
-    # 스케줄러 실행 여부
-    "IS_RUN_SCHEDULER": True,   # by DH 2021-10-17
 
-    # SQL문 출력
-    "IS_SQL_ECHO": False,
-    # DB 연결 설정 출력
-    "ECHO_DB_SETTING": True,
+    # 스케줄러 동작 설정
+    "IS_RUN_SCHEDULER": True,   # 스케줄러 실행 여부
 
 }
 

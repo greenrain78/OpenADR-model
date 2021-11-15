@@ -4,13 +4,10 @@ from src.DB.DB_Adapter import DBAdapter
 
 logger = getLogger(__name__)
 
-raise Exception
+if __name__ == 'main':
+    logger.info("main")
 
-# print("main")
-# print(__name__)
-# logger.info("main")
-# if __name__ == 'main':
-#     print("main!!!!")
-#
-#     test = DBAdapter("testars")
-#     test.print_info()
+    test = DBAdapter("testars")
+    sql = f"select * from auth_group"
+    data = test.execute_sql(sql)
+    print(data)

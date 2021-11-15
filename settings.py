@@ -2,7 +2,6 @@ import os
 
 from src.Utils.env.env_import import setting_dev_env, get_env_none
 
-DB_NickName = os.environ.get('DB_NICKNAME')
 DATABASES = {
     # docker-compose 에서 직접 기입
     'direct': {
@@ -36,19 +35,23 @@ DATABASES = {
         "port": 11100,
     },
 }
-# 중요한 설정변수 변경 금지
-IS_DB_TEST_SKIP = True  # DB를 사용하는 테스트 코드 실행 여부
+# DB 연결 설정
+DB_NickName = setting_dev_env('DB_NickName', default='server_on_docker')
+IS_SQL_ECHO = setting_dev_env('IS_SQL_ECHO', default=False)
 
 # 테스트 설정 변수 반영
 IS_RUN_TEST = setting_dev_env('IS_RUN_TEST', default=True)
 IS_TEST_ALL = setting_dev_env('IS_TEST_ALL', default=True)
 
+# main 동작 설정
 IS_MAIN_RUNNING = setting_dev_env('IS_MAIN_RUNNING', default=True)
 MAIN_INTERVAL = setting_dev_env('MAIN_INTERVAL', default=600)
-IS_SQL_ECHO = setting_dev_env('IS_SQL_ECHO', default=False)
 
+# 스케줄러 동작 설정
 IS_RUN_SCHEDULER = setting_dev_env('IS_RUN_SCHEDULER', default=True)
-ECHO_DB_SETTING = setting_dev_env('ECHO_DB_SETTING', default=True)
+
+# 중요한 설정변수 변경 금지
+IS_DB_TEST_SKIP = True  # DB를 사용하는 테스트 코드 실행 여부
 
 
 def return_settings():
@@ -63,5 +66,4 @@ def return_settings():
         "MAIN_INTERVAL": MAIN_INTERVAL,
         "IS_SQL_ECHO": IS_SQL_ECHO,
         "IS_RUN_SCHEDULER": IS_RUN_SCHEDULER,
-        "ECHO_DB_SETTING": ECHO_DB_SETTING,
     }

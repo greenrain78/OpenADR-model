@@ -5,7 +5,7 @@ import coloredlogs
 from logging import getLogger
 
 from Controller.logger_config import main_loggers_config
-from settings import DATABASES, return_settings, IS_MAIN_RUNNING, MAIN_INTERVAL
+from settings import DATABASES, return_settings, IS_MAIN_RUNNING, MAIN_INTERVAL, IS_SQL_ECHO, DB_NickName
 from src.DB.BaseDB_Adapter import BaseDBAdapter
 from src.Logger.setting_logger import log_settings
 
@@ -19,7 +19,7 @@ if __name__ == '__main__':
     log_settings.logger_settings(logger_config=main_loggers_config)
 
     logger.info(f"{project_name}: db adapter setting")
-    BaseDBAdapter.init_settings(database=DATABASES)
+    BaseDBAdapter.init_settings(databases=DATABASES, is_echo_sql=IS_SQL_ECHO, db_name=DB_NickName)
 
 
     logger.info(f"{project_name}: print settings")
