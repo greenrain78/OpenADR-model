@@ -2,6 +2,6 @@
 main_loggers_config = {
     "": {
         "level": "DEBUG",
-        "handlers": ["console"],
+        "handlers": ["console", "db"],
     },
 }
