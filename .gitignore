@@ -7,4 +7,6 @@ __pycache__
 # DB 폴더 제외
 data
 
+simple_test.py
+
 !.keep

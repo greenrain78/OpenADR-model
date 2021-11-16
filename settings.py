@@ -2,6 +2,16 @@ import os
 
 from src.Utils.env.env_import import setting_dev_env, get_env_none
 
+CONTAINTER_NAME = os.environ.get('CONTAINTER_NAME', default='local')
+"""
+docker-compose 에서 입력시 우선 반영
+지정 없을시 서버에서 운영시 server_on_docker
+아닐시 settings_dev 설정 우선
+"""
+DB_NickName = os.environ.get(
+    'DB_NICKNAME',
+    default=setting_dev_env('DB_NickName', default='server_on_docker'))
+
 DATABASES = {
     # docker-compose 에서 직접 기입
     'direct': {
@@ -36,8 +46,8 @@ DATABASES = {
     },
 }
 # DB 연결 설정
-DB_NickName = setting_dev_env('DB_NickName', default='server_on_docker')
 IS_SQL_ECHO = setting_dev_env('IS_SQL_ECHO', default=False)
+LOGGER_DB = DATABASES[DB_NickName]
 
 # 테스트 설정 변수 반영
 IS_RUN_TEST = setting_dev_env('IS_RUN_TEST', default=True)
@@ -56,6 +66,7 @@ IS_DB_TEST_SKIP = True  # DB를 사용하는 테스트 코드 실행 여부
 
 def return_settings():
     return {
+        'CONTAINTER_NAME': CONTAINTER_NAME,
         'IS_SERVER': get_env_none('IS_SERVER'),
         "DB_NickName": DB_NickName,
         # "DATABASES": DATABASES,   # DB 정보는 생략

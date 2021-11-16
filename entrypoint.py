@@ -1,12 +1,12 @@
 import traceback
+from logging import getLogger
 from time import sleep
 
-import coloredlogs
-from logging import getLogger
-
 from Controller.logger_config import main_loggers_config
-from settings import DATABASES, return_settings, IS_MAIN_RUNNING, MAIN_INTERVAL, IS_SQL_ECHO, DB_NickName
+from settings import DATABASES, return_settings, IS_MAIN_RUNNING, MAIN_INTERVAL, IS_SQL_ECHO, DB_NickName, \
+    CONTAINTER_NAME, LOGGER_DB
 from src.DB.BaseDB_Adapter import BaseDBAdapter
+from src.Logger.db.DB_handler import DatabaseHandler
 from src.Logger.setting_logger import log_settings
 
 logger = getLogger(__name__)
@@ -17,10 +17,12 @@ if __name__ == '__main__':
     print(f"{project_name}: logger settings")
 
     log_settings.logger_settings(logger_config=main_loggers_config)
+    DatabaseHandler.init_db_adapter(container=CONTAINTER_NAME, db_info=LOGGER_DB)
+
 
     logger.info(f"{project_name}: db adapter setting")
     BaseDBAdapter.init_settings(databases=DATABASES, is_echo_sql=IS_SQL_ECHO, db_name=DB_NickName)
-
+    # DB 로거 생성
 
     logger.info(f"{project_name}: print settings")
     for key, val in return_settings().items():
@@ -31,6 +33,7 @@ if __name__ == '__main__':
     try:
         # main run
         import main
+        pass
     except Exception as e:
 
         logger.error(f"{project_name}: main running error\n"

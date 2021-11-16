@@ -12,7 +12,7 @@ DEV_SETTINGS = {
     "MAIN_INTERVAL": 10,
 
     # 스케줄러 동작 설정
-    "IS_RUN_SCHEDULER": True,   # 스케줄러 실행 여부
+    "IS_RUN_SCHEDULER": False,   # 스케줄러 실행 여부
 
 }
 

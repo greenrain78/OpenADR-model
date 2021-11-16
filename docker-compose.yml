@@ -12,7 +12,12 @@ services:
     environment:
       IS_SERVER: "False"
       TZ: Asia/Seoul
-      DB_NICKNAME: local
-
+      DB_NICKNAME: server_on_docker
     # 아래 줄 추가시 해당 python 파일을 실행
     entrypoint: ["sh", "/home/OpenADR-model/entrypoint.sh"]
+
+# local docker 연결시
+networks:
+  default:
+    external: true  # 기존 network와 연결
+    name: openadr-docker_default
