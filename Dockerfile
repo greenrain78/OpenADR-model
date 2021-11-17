@@ -10,6 +10,12 @@ RUN apt-get install -y openssh-server
 RUN apt-get install -y vim
 
 
+RUN mkdir /root/.ssh/
+ADD greenrain_github /root/.ssh/id_rsa
+RUN chmod 600 /root/.ssh/id_rsa
+RUN touch /root/.ssh/known_hosts
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+
 # install src
 WORKDIR /home
 RUN git clone https://$GIT_ID:$GIT_PASSWORD@github.com/greenrain78/OpenADR-model.git
