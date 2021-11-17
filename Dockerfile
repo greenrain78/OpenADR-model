@@ -24,6 +24,8 @@ RUN git config --global user.email "$GIT_EMAIL"
 
 # 파이썬 라이브러리 설치
 WORKDIR /home/OpenADR-model
+RUN git submodule init
+RUN git submodule update
 RUN python -m pip install -r /home/OpenADR-model/requirements.txt
 
 # entrypoint
