@@ -7,6 +7,8 @@ __pycache__
 # DB 폴더 제외
 data
 
+greenrain_github
+
 simple_test.py
 
 !.keep
