@@ -33,7 +33,7 @@ class BaseEngine:
         """
         self.container_run()
         update_sql = f"UPDATE {self.table_name} " \
-                     f"SET state = '주기적 실행 완료 - {datetime.now()}' " \
+                     f"SET status = '주기적 실행 완료 - {datetime.now()}' " \
                      f"WHERE name = '{self.name}' " \
                      f"AND container_name = '{self.container}'"
         db.execute_sql(update_sql)
