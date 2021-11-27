@@ -1,9 +1,13 @@
+from datetime import datetime
 from logging import getLogger
 
 from pycontainerutils.db.DB_Adapter import DBAdapter
 from pycontainerutils.schedule.schedule_manager import MainScheduler
 
+from settings import CONTAINTER_NAME
+
 logger = getLogger(__name__)
+
 
 class BaseEngine:
     db = DBAdapter(name="BaseEngine")
@@ -22,6 +26,17 @@ class BaseEngine:
         """
         print("???")
         logger.info("오버라이딩 안함")
+        pass
+
+    def container_run_manager(self):
+        """ 기본 스케줄러 등록 -컨테이너에서 실행
+        """
+        self.container_run()
+        update_sql = f"UPDATE {self.table_name} " \
+                     f"SET state = '주기적 실행 완료 - {datetime.now()}' " \
+                     f"WHERE name = '{self.name}' " \
+                     f"AND container_name = '{self.container}'"
+        db.execute_sql(update_sql)
         pass
 
     def reload_engine(self):
@@ -54,7 +69,6 @@ class BaseEngine:
                               f"cycle: {self.cycle}\n"
                               f"e: {e}")
         pass
-
 
     def scheduler_run(self):
         self.scheduler.run()
