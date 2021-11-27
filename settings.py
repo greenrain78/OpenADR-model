@@ -1,7 +1,5 @@
 import os
 
-from src.Utils.env.env_import import setting_dev_env, get_env_none
-
 CONTAINTER_NAME = os.environ.get('CONTAINTER_NAME', default='local')
 """
 docker-compose 에서 입력시 우선 반영

@@ -5,9 +5,6 @@ from time import sleep
 from Controller.logger_config import main_loggers_config
 from settings import DATABASES, return_settings, IS_MAIN_RUNNING, MAIN_INTERVAL, IS_SQL_ECHO, DB_NickName, \
     CONTAINTER_NAME, LOGGER_DB
-from src.DB.BaseDB_Adapter import BaseDBAdapter
-from src.Logger.db.DB_handler import DatabaseHandler
-from src.Logger.setting_logger import log_settings
 
 logger = getLogger(__name__)
 

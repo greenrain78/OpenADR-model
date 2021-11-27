@@ -9,13 +9,6 @@ RUN apt-get install -y openssh-server
 # install vim
 RUN apt-get install -y vim
 
-
-RUN mkdir /root/.ssh/
-ADD greenrain_github /root/.ssh/id_rsa
-RUN chmod 600 /root/.ssh/id_rsa
-RUN touch /root/.ssh/known_hosts
-RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
-
 # install src
 WORKDIR /home
 RUN git clone https://$GIT_ID:$GIT_PASSWORD@github.com/greenrain78/OpenADR-model.git
@@ -24,8 +17,6 @@ RUN git config --global user.email "$GIT_EMAIL"
 
 # 파이썬 라이브러리 설치
 WORKDIR /home/OpenADR-model
-RUN git submodule init
-RUN git submodule update
 RUN python -m pip install -r /home/OpenADR-model/requirements.txt
 
 # entrypoint

@@ -1,6 +1,0 @@
-[submodule "src"]
-	path = src
-	# https
-	url = https://github.com/greenrain78/container-engine
-	# ssh
-	url = git@github.com:greenrain78/container-engine.git
