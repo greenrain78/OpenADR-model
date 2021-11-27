@@ -36,7 +36,7 @@ class BaseEngine:
                      f"SET status = '주기적 실행 완료 - {datetime.now()}' " \
                      f"WHERE name = '{self.name}' " \
                      f"AND container_name = '{self.container}'"
-        db.execute_sql(update_sql)
+        self.db.execute_sql(update_sql)
         pass
 
     def reload_engine(self):
@@ -60,7 +60,7 @@ class BaseEngine:
         # 작업 등록
         try:
             self.scheduler.create_job(
-                self.container_run, trigger="interval",
+                self.container_run_manager, trigger="interval",
                 **self.cycle)
             logger.info(f"{self.name}: 스케줄러 등록 성공\n"
                         f"{self.cycle}")
